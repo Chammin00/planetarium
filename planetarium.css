@@ -1,0 +1,458 @@
+/**
+ * 🌌 Antigravity Deep Space Planetary Observatory Styles (planetarium.css)
+ *
+ * Professional astronomical styling adhering strictly to High-Gloss Lacquer:
+ * Deep Lacquer Navy (#050B18 to #0B162C), Cobalt Glaze (#0E1D3A),
+ * Polished Camel (#C5A059), Sunlit Tan (#DFBA73), Specular Glare Optics.
+ */
+
+:root {
+  --lacquer-navy-base: #050B18;
+  --lacquer-navy-deep: #0B162C;
+  --lacquer-cobalt-glaze: #0E1D3A;
+  --lacquer-tan-camel: #C5A059;
+  --lacquer-tan-sunlit: #DFBA73;
+  --lacquer-tan-glow: rgba(197, 160, 89, 0.35);
+  --lacquer-specular-white: rgba(255, 255, 255, 0.85);
+  --lacquer-wet-shadow: 0 16px 48px -8px rgba(2, 6, 18, 0.95), 0 4px 16px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(5, 11, 24, 0.8);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(197, 160, 89, 0.35);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(223, 186, 115, 0.7);
+}
+
+/* Fullscreen Planetarium Canvas */
+#planetarium-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 5;
+  cursor: grab;
+}
+#planetarium-canvas:active {
+  cursor: grabbing;
+}
+
+/* High-Gloss Lacquer Glass Panels */
+.lacquer-glass {
+  background: linear-gradient(135deg, rgba(14, 29, 58, 0.88) 0%, rgba(5, 11, 24, 0.96) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(197, 160, 89, 0.28);
+  box-shadow: var(--lacquer-wet-shadow);
+}
+
+.lacquer-glass-card {
+  background: linear-gradient(145deg, rgba(11, 22, 44, 0.96) 0%, rgba(5, 11, 24, 0.99) 100%);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(197, 160, 89, 0.38);
+  box-shadow: 0 24px 64px -12px rgba(2, 6, 18, 0.98), 0 0 35px rgba(197, 160, 89, 0.18), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Docked Observation Deck (Right Sidebar) */
+#telemetry-deck {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  width: 460px;
+  max-width: 92vw;
+  z-index: 45;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  pointer-events: auto;
+}
+#telemetry-deck.open {
+  transform: translateX(0);
+}
+
+/* Left Planetary Manifest Sidebar */
+#manifest-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  width: 320px;
+  max-width: 85vw;
+  z-index: 45;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+#manifest-sidebar.open {
+  transform: translateX(0);
+}
+
+/* Planetary Hologram Stage in HUD */
+#planet-hologram-stage {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  background: radial-gradient(circle at 50% 50%, rgba(14, 29, 58, 0.6) 0%, rgba(5, 11, 24, 0.9) 80%);
+  border: 1px solid rgba(197, 160, 89, 0.25);
+  overflow: hidden;
+}
+
+/* Mission Directive Glowing Box */
+.directive-box {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.12) 0%, rgba(14, 29, 58, 0.5) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  box-shadow: 0 4px 24px -2px rgba(197, 160, 89, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Antigravity Mission Control Prompt Console */
+.antigravity-console-box {
+  background: linear-gradient(135deg, rgba(14, 29, 58, 0.85) 0%, rgba(5, 11, 24, 0.98) 100%);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  box-shadow: 0 8px 32px -4px rgba(99, 102, 241, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Toast Notification */
+#antigravity-toast {
+  position: fixed;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#antigravity-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Pulsing Status Beacons */
+.status-beacon {
+  position: relative;
+}
+.status-beacon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  height: 200%;
+  border-radius: 9999px;
+  background: inherit;
+  opacity: 0.4;
+  animation: beacon-pulse 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes beacon-pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(2.6); opacity: 0; }
+}
+
+/* Sector Filter Pills */
+.sector-pill {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.sector-pill.active {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.28) 0%, rgba(223, 186, 115, 0.18) 100%);
+  border-color: #DFBA73;
+  color: #FFFFFF;
+  box-shadow: 0 0 16px rgba(197, 160, 89, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* Radar & Viewport Controls */
+#minimap-container {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.85), inset 0 0 24px rgba(14, 29, 58, 0.8);
+}
+
+/* Tour Mode Live Banner */
+#tour-banner {
+  animation: tour-glow 2.5s ease-in-out infinite alternate;
+}
+@keyframes tour-glow {
+  0% { box-shadow: 0 0 15px rgba(197, 160, 89, 0.2); }
+  100% { box-shadow: 0 0 30px rgba(197, 160, 89, 0.6); }
+}
+
+/* ==========================================================================
+   ⚡ ANTIGRAVITY SECONDARY SIDE PANEL & PROJECT LIST STYLING
+   ========================================================================== */
+
+:root {
+  --ag-panel-width: 440px;
+}
+body.ag-panel-compact {
+  --ag-panel-width: 360px;
+}
+body.ag-panel-wide {
+  --ag-panel-width: 540px;
+}
+
+#antigravity-secondary-panel {
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  width: var(--ag-panel-width, 440px);
+  max-width: 92vw;
+  z-index: 46;
+  transform: translateX(-100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), width 0.25s ease;
+  pointer-events: auto;
+  overflow: hidden;
+  border-right: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: 12px 0 48px -6px rgba(2, 6, 18, 0.95), 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+#antigravity-secondary-panel.open {
+  transform: translateX(0);
+}
+
+/* Right-docked configuration */
+#antigravity-secondary-panel.dock-right {
+  left: auto;
+  right: 0;
+  transform: translateX(100%);
+  border-right: none;
+  border-left: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: -12px 0 48px -6px rgba(2, 6, 18, 0.95), 0 0 30px rgba(99, 102, 241, 0.15);
+}
+
+#antigravity-secondary-panel.dock-right.open {
+  transform: translateX(0);
+}
+
+/* Width modes */
+#antigravity-secondary-panel.panel-wide {
+  width: var(--ag-panel-width, 540px);
+}
+#antigravity-secondary-panel.panel-compact {
+  width: var(--ag-panel-width, 360px);
+}
+
+/* ==========================================================================
+   🛡️ OVERLAY CO-EXISTENCE & ANTI-COLLISION RULES
+   Ensures Sector Bar, Minimap Radar, Bottom Telemetry & Deck Never Overlap
+   ========================================================================== */
+
+/* 1. Sector Constellation Filter Bar Offset */
+#sector-filter-bar {
+  left: 0;
+  right: 0;
+  transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.ag-panel-open:not(.ag-dock-right) #sector-filter-bar {
+  left: var(--ag-panel-width, 440px);
+}
+body.ag-panel-open.ag-dock-right #sector-filter-bar {
+  right: var(--ag-panel-width, 440px);
+}
+body.deck-open:not(.ag-dock-right) #sector-filter-bar {
+  right: 460px;
+}
+
+/* 2. Bottom-Left Astronomical Telemetry Bar Offset */
+#bottom-telemetry-bar {
+  left: 16px;
+  transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+body.ag-panel-open:not(.ag-dock-right) #bottom-telemetry-bar {
+  left: calc(var(--ag-panel-width, 440px) + 16px);
+}
+@media (max-width: 1280px) {
+  body.ag-panel-open #bottom-telemetry-bar {
+    display: none !important;
+  }
+}
+
+/* 3. Bottom-Right Radar Minimap & Zoom Controls Offset */
+#bottom-radar-controls {
+  right: 16px;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.ag-panel-open.ag-dock-right #bottom-radar-controls {
+  right: calc(var(--ag-panel-width, 440px) + 16px);
+}
+body.deck-open #bottom-radar-controls {
+  right: 476px;
+}
+
+/* 4. Tour Banner Responsive Alignment */
+#tour-banner {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+body.ag-panel-open:not(.ag-dock-right) #tour-banner {
+  transform: translateX(calc(-50% + (var(--ag-panel-width, 440px) / 2)));
+}
+body.ag-panel-open.ag-dock-right #tour-banner {
+  transform: translateX(calc(-50% - (var(--ag-panel-width, 440px) / 2)));
+}
+
+/* Activity Bar Rail */
+.ag-activity-btn {
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ag-activity-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #DFBA73;
+  transform: scale(1.05);
+}
+.ag-activity-btn.active {
+  color: #DFBA73;
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.22) 0%, rgba(99, 102, 241, 0.18) 100%);
+  box-shadow: inset 0 0 12px rgba(197, 160, 89, 0.35);
+}
+.ag-activity-btn.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(to bottom, #DFBA73, #818CF8);
+  box-shadow: 0 0 8px #DFBA73;
+}
+
+/* Antigravity Project Cards (List items mapping to planets) */
+.ag-project-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(11, 22, 44, 0.85) 0%, rgba(5, 11, 24, 0.95) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.ag-project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  pointer-events: none;
+}
+
+.ag-project-card:hover {
+  border-color: #DFBA73;
+  background: linear-gradient(145deg, rgba(16, 32, 64, 0.95) 0%, rgba(8, 16, 34, 0.98) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -4px rgba(2, 6, 18, 0.9), 0 0 20px rgba(197, 160, 89, 0.25);
+}
+
+.ag-project-card.active {
+  border-color: #DFBA73;
+  background: linear-gradient(145deg, rgba(22, 44, 88, 0.95) 0%, rgba(10, 20, 42, 0.98) 100%);
+  box-shadow: 0 0 24px rgba(223, 186, 115, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
+.ag-project-card.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #DFBA73, #818CF8);
+  box-shadow: 0 0 10px #DFBA73;
+}
+
+/* Planet Miniature Aura in Project Card */
+.ag-planet-orb {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px currentColor;
+}
+
+.ag-planet-orb::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 1px dashed currentColor;
+  opacity: 0.3;
+  animation: orb-spin 12s linear infinite;
+}
+
+@keyframes orb-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Warp Arrow Button inside Card */
+.ag-warp-btn {
+  transition: all 0.2s ease;
+}
+.ag-project-card:hover .ag-warp-btn {
+  transform: translateX(3px);
+  color: #DFBA73;
+}
+
+/* =========================================================================
+   🔬 3D CELESTIAL MODEL STUDIO & ARMILLARY LAB STYLES
+   ========================================================================= */
+
+#celestial-model-lab {
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+#celestial-model-lab.hidden {
+  display: none !important;
+}
+
+.model-mode-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.model-mode-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.model-mode-btn.active {
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.28) 0%, rgba(223, 186, 115, 0.18) 100%);
+  color: #DFBA73 !important;
+  border: 1px solid rgba(223, 186, 115, 0.5);
+  box-shadow: 0 0 12px rgba(223, 186, 115, 0.25);
+}
+
+/* 3D Model Viewport Canvas */
+#model-lab-canvas {
+  touch-action: none;
+}
+
+/* 3D Rotating Mini Hologram Viewport in Side Panels */
+.model-mini-3d-stage {
+  position: relative;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  background: linear-gradient(180deg, rgba(2, 6, 16, 0.9) 0%, rgba(8, 18, 38, 0.75) 100%);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.5);
+  cursor: grab;
+}
+.model-mini-3d-stage:active {
+  cursor: grabbing;
+}
+
+

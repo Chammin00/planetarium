@@ -1,0 +1,11 @@
+﻿# System & Temporary
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.log
+
+# Build & Dependencies
+node_modules/
+dist/
+.cache/
