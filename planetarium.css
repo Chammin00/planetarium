@@ -132,7 +132,7 @@
   z-index: 9999;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 #antigravity-toast.show {
   transform: translateX(-50%) translateY(0);
@@ -165,7 +165,7 @@
 
 /* Sector Filter Pills */
 .sector-pill {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .sector-pill.active {
   background: linear-gradient(135deg, rgba(197, 160, 89, 0.28) 0%, rgba(223, 186, 115, 0.18) 100%);
@@ -304,7 +304,7 @@ body.ag-panel-open.ag-dock-right #tour-banner {
 /* Activity Bar Rail */
 .ag-activity-btn {
   position: relative;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ag-activity-btn:hover {
   background: rgba(255, 255, 255, 0.08);
@@ -337,7 +337,7 @@ body.ag-panel-open.ag-dock-right #tour-banner {
   border-radius: 14px;
   padding: 10px 12px;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
@@ -406,7 +406,7 @@ body.ag-panel-open.ag-dock-right #tour-banner {
 
 /* Warp Arrow Button inside Card */
 .ag-warp-btn {
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .ag-project-card:hover .ag-warp-btn {
   transform: translateX(3px);
@@ -425,7 +425,7 @@ body.ag-panel-open.ag-dock-right #tour-banner {
 }
 
 .model-mode-btn {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .model-mode-btn:hover {
   background: rgba(255, 255, 255, 0.08);
